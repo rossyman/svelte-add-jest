@@ -1,0 +1,11 @@
+{
+  "transform": {
+    "^.+\\.js$": "babel-jest",
+    "^.+\\.svelte$": "svelte-jester"
+  },
+  "moduleNameMapper": {
+    "^\\$lib(.*)$": "<rootDir>/src/lib$1",
+    "^\\$app(.*)$": [".svelte/dev/runtime/app/*", ".svelte/build/runtime/app/*"]
+  },
+  "moduleFileExtensions": ["js", "svelte"]
+}

@@ -1,0 +1,25 @@
+{
+  "private": true,
+  "name": "@rossyman/svelte-add-jest",
+  "version": "1.0.0",
+  "description": "SvelteKit adder for Jest unit testing",
+  "license": "MIT",
+  "keywords": [
+    "svelte",
+    "sveltekit",
+    "svelte-kit",
+    "jest",
+    "unit-test",
+    "test"
+  ],
+  "repository": "github:rossyman/svelte-add-jest",
+  "bugs": "https://github.com/rossyman/svelte-add-jest/issues",
+  "contributors": [
+    "Ross MacPhee (https://github.com/rossyman)",
+    "Brady Wiggins (https://github.com/FractalHQ)"
+  ],
+  "preset": "preset.ts",
+  "devDependencies": {
+    "apply": "^0.2.13"
+  }
+}
