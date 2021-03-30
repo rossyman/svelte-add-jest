@@ -1,10 +1,4 @@
-<h1 align="center">Welcome to svelte-add-jest 👋</h1>
-<p>
-  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
-  <a href="https://github.com/rossyman/svelte-add-jest/blob/main/LICENSE" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
-  </a>
-</p>
+<h1 align="center">🧪 Add Jest to Sveltekit</h1>
 
 ## ❓ What is this?
 
@@ -26,6 +20,8 @@ npx svelte-add jest
 
 After the preset runs,
 
+- `npm install`, `pnpm i`, or `yarn` to update dependencies.
+
 - You can apply _another_ [Svelte Adder](https://github.com/svelte-add/svelte-adders) to your project for more functionality.
 
 ### ⚙️ Options
@@ -36,15 +32,11 @@ After the preset runs,
 | Jest DOM Support     | `--jest-dom`                | `--no-jest-dom`                | True            |
 | Generate Example     | `--examples`                | `--no-examples`                | True            |
 
-## 👀 See Also
+### 📑 Relevant Documentation
 
 - [Svelte Testing Library Docs](https://testing-library.com/docs/svelte-testing-library/intro/)
 - [Jest DOM](https://github.com/testing-library/jest-dom#usage)
 - [Jest](https://jestjs.io)
-
-## 🤝 Contributing
-
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/rossyman/svelte-add-jest/issues).
 
 ### 😵 Help! I have a question
 
@@ -56,27 +48,11 @@ Contributions, issues and feature requests are welcome!<br />Feel free to check 
 
 These are new tools, so there are likely to be problems in this project. Thank you for bringing them to our attention or fixing them for us.
 
-## Show your support
+## 📄 License
 
-Give a ⭐️ if this project helped you!
-
-## Author
-
-👤 **Ross MacPhee**
-
-- Twitter: [@rossco___](https://twitter.com/rossco___)
-- Github: [@rossyman](https://github.com/rossyman)
-- LinkedIn: [@ross-macphee](https://linkedin.com/in/ross-macphee)
-
-👤 **Brady Wiggins**
-
-- Github: [@FractalHQ](https://github.com/FractalHQ)
-
-## 📝 License
-
-Copyright © 2021 - Ross MacPhee & Brady Wiggins.<br />
-This project is [MIT](https://github.com/rossyman/svelte-add-jest/blob/main/LICENSE) licensed.
+MIT
 
 ---
+_Repository preview image generated with [GitHub Social Preview](https://social-preview.pqt.dev)_
 
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
