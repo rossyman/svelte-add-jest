@@ -18,25 +18,28 @@ Once that is set up, run this command in your project directory to set up Jest:
 npx svelte-add jest
 ```
 
+> ❗️ __When running with TypeScript support enabled, remove comments within `tsconfig.json` or the adder will fail. This is a known limitation of [Preset](https://usepreset.dev/), as it relies upon JSON.parse.__
+
 After the preset runs,
 
-- `npm install`, `pnpm i`, or `yarn` to update dependencies.
+-   `npm install`, `pnpm i`, or `yarn` to update dependencies.
 
-- You can apply _another_ [Svelte Adder](https://github.com/svelte-add/svelte-adders) to your project for more functionality.
+-   You can apply _another_ [Svelte Adder](https://github.com/svelte-add/svelte-adders) to your project for more functionality.
 
 ### ⚙️ Options
 
-| Description          | Flag                        | Negated                        | Default         | 
-|----------------------|-----------------------------|--------------------------------|-----------------|
-| Interactive Mode     | `--interaction`             | `--no-interaction`             | True            |
-| Jest DOM Support     | `--jest-dom`                | `--no-jest-dom`                | True            |
-| Generate Example     | `--examples`                | `--no-examples`                | True            |
+| Description        | Flag            | Negated            | Default |
+| ------------------ | --------------- | ------------------ | ------- |
+| Interactive Mode   | `--interaction` | `--no-interaction` | True    |
+| Jest DOM Support   | `--jest-dom`    | `--no-jest-dom`    | True    |
+| Typescript Support | `--ts`          | `--no-ts`          | False   |
+| Generate Example   | `--examples`    | `--no-examples`    | True    |
 
 ### 📑 Relevant Documentation
 
-- [Svelte Testing Library Docs](https://testing-library.com/docs/svelte-testing-library/intro/)
-- [Jest DOM](https://github.com/testing-library/jest-dom#usage)
-- [Jest](https://jestjs.io)
+-   [Svelte Testing Library Docs](https://testing-library.com/docs/svelte-testing-library/intro/)
+-   [Jest DOM](https://github.com/testing-library/jest-dom#usage)
+-   [Jest](https://jestjs.io)
 
 ### 😵 Help! I have a question
 
@@ -53,6 +56,7 @@ These are new tools, so there are likely to be problems in this project. Thank y
 MIT
 
 ---
+
 _Repository preview image generated with [GitHub Social Preview](https://social-preview.pqt.dev)_
 
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
