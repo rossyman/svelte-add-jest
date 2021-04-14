@@ -157,6 +157,7 @@ class SvelteJestAdder extends Adder {
 
   protected readonly CONFIGURATION: Configuration = {
     'jest-dom': {message: 'Enable Jest DOM support?', default: true, question: true},
+    'ts': {message: 'Enable TypeScript support?', default: false, question: true},
     'examples': {message: 'Generate example test file?', default: true, question: true}
   };
 
@@ -165,9 +166,12 @@ class SvelteJestAdder extends Adder {
     '@babel/preset-env': {version: '^7.13.0', type: 'DEV'},
     'jest': {version: '^26.6.0', type: 'DEV'},
     'babel-jest': {version: '^26.6.0', type: 'DEV'},
-    'svelte-jester': {version: '^1.3.0', type: 'DEV'},
+    'svelte-jester': {version: '^1.4.0', type: 'DEV'},
     '@testing-library/svelte': {version: '^3.0.0', type: 'DEV'},
     '@testing-library/jest-dom': {version: '^5.11.0', type: 'DEV', reliesOn: 'jest-dom'},
+    'ts-jest': {version: '^26.5.0', type: 'DEV', reliesOn: 'ts'},
+    '@types/jest': {version: '^26.0.22', type: 'DEV', reliesOn: 'ts'},
+    '@types/testing-library__jest-dom': {version: '^5.9.5', type: 'DEV', reliesOn: 'ts'}
   };
 
   run(): void {
@@ -183,9 +187,39 @@ class SvelteJestAdder extends Adder {
       .withTitle('Enabling Jest DOM Support')
       .if(() => this.getConfiguration('jest-dom'));
 
+    Preset
+      .editJson('tsconfig.json').merge({
+        exclude: ['src/**/*.spec.ts']
+      })
+      .withTitle('Modifying TypeScript config for project')
+      .if(() => this.getConfiguration('ts'));
+
+    Preset
+      .editJson('jest.config.json').merge({
+        transform: {
+          '^.+\\.svelte$': ['svelte-jester', {preprocess: true}],
+          '^.+\\.ts$': 'ts-jest'
+        },
+        moduleFileExtensions: ['js', 'svelte', 'ts'],
+        globals: {
+          'ts-jest': {
+            tsconfig: 'tsconfig.spec.json'
+          }
+        }
+      })
+      .withTitle('Modifying Jest config for TypeScript transformation')
+      .if(() => this.getConfiguration('ts'));
+
+    this.safeExtract('Initializing TypeScript config for tests', 'tsconfig.spec.json')
+      .if(() => this.getConfiguration('ts'));
+
     this.safeExtract('Initializing example test file', 'index.spec.js')
       .to('src/routes/')
-      .if(() => this.getConfiguration('examples') && this.getConfiguration('jest-dom'));
+      .if(() => this.getConfiguration('examples') && this.getConfiguration('jest-dom') && !this.getConfiguration('ts'));
+
+    this.safeExtract('Initializing example test file', 'index.spec.ts')
+      .to('src/routes/')
+      .if(() => this.getConfiguration('examples') && this.getConfiguration('jest-dom') && this.getConfiguration('ts'));
 
     Preset
       .editJson('package.json')
