@@ -164,12 +164,12 @@ class SvelteJestAdder extends Adder {
   protected readonly REQUIRED_DEPENDENCIES: Dependencies = {
     '@babel/core': {version: '^7.14.0', type: 'DEV'},
     '@babel/preset-env': {version: '^7.14.0', type: 'DEV'},
-    'jest': {version: '^27.0.0', type: 'DEV'},
-    'babel-jest': {version: '^27.0.0', type: 'DEV'},
+    'jest': {version: '^26.0.0', type: 'DEV'},
+    'babel-jest': {version: '^26.0.0', type: 'DEV'},
     'svelte-jester': {version: '^1.7.0', type: 'DEV'},
     '@testing-library/svelte': {version: '^3.0.0', type: 'DEV'},
     '@testing-library/jest-dom': {version: '^5.14.0', type: 'DEV', reliesOn: 'jest-dom'},
-    'ts-jest': {version: '^27.0.0', type: 'DEV', reliesOn: 'ts'},
+    'ts-jest': {version: '^26.0.0', type: 'DEV', reliesOn: 'ts'},
     '@types/jest': {version: '^26.0.0', type: 'DEV', reliesOn: 'ts'},
     '@types/testing-library__jest-dom': {version: '^5.14.0', type: 'DEV', reliesOn: 'ts'}
   };
