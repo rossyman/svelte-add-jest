@@ -153,7 +153,7 @@ abstract class Adder {
 
 class SvelteJestAdder extends Adder {
 
-  protected readonly ADDER_NAME = '@rossyman/svelte-add-jest';
+  protected readonly ADDER_NAME = 'svelte-add-jest';
 
   protected readonly CONFIGURATION: Configuration = {
     'jest-dom': {message: 'Enable Jest DOM support?', default: true, question: true},
@@ -162,16 +162,16 @@ class SvelteJestAdder extends Adder {
   };
 
   protected readonly REQUIRED_DEPENDENCIES: Dependencies = {
-    '@babel/core': {version: '^7.13.0', type: 'DEV'},
-    '@babel/preset-env': {version: '^7.13.0', type: 'DEV'},
-    'jest': {version: '^26.6.0', type: 'DEV'},
-    'babel-jest': {version: '^26.6.0', type: 'DEV'},
-    'svelte-jester': {version: '^1.4.0', type: 'DEV'},
+    '@babel/core': {version: '^7.14.0', type: 'DEV'},
+    '@babel/preset-env': {version: '^7.14.0', type: 'DEV'},
+    'jest': {version: '^27.0.0', type: 'DEV'},
+    'babel-jest': {version: '^27.0.0', type: 'DEV'},
+    'svelte-jester': {version: '^1.7.0', type: 'DEV'},
     '@testing-library/svelte': {version: '^3.0.0', type: 'DEV'},
-    '@testing-library/jest-dom': {version: '^5.11.0', type: 'DEV', reliesOn: 'jest-dom'},
-    'ts-jest': {version: '^26.5.0', type: 'DEV', reliesOn: 'ts'},
-    '@types/jest': {version: '^26.0.22', type: 'DEV', reliesOn: 'ts'},
-    '@types/testing-library__jest-dom': {version: '^5.9.5', type: 'DEV', reliesOn: 'ts'}
+    '@testing-library/jest-dom': {version: '^5.14.0', type: 'DEV', reliesOn: 'jest-dom'},
+    'ts-jest': {version: '^27.0.0', type: 'DEV', reliesOn: 'ts'},
+    '@types/jest': {version: '^26.0.0', type: 'DEV', reliesOn: 'ts'},
+    '@types/testing-library__jest-dom': {version: '^5.14.0', type: 'DEV', reliesOn: 'ts'}
   };
 
   run(): void {
@@ -200,7 +200,7 @@ class SvelteJestAdder extends Adder {
           '^.+\\.svelte$': ['svelte-jester', {preprocess: true}],
           '^.+\\.ts$': 'ts-jest'
         },
-        moduleFileExtensions: ['js', 'svelte', 'ts'],
+        moduleFileExtensions: ['js', 'ts', 'svelte'],
         globals: {
           'ts-jest': {
             tsconfig: 'tsconfig.spec.json'

@@ -14,11 +14,11 @@ npm init svelte@next
 
 Once that is set up, run this command in your project directory to set up Jest:
 
-```sh
-npx svelte-add jest
-```
-
 > ❗️ __When running with TypeScript support enabled, remove comments within `tsconfig.json` or the adder will fail. This is a known limitation of [Preset](https://usepreset.dev/), as it relies upon JSON.parse.__
+
+```sh
+npx apply rossyman/svelte-add-jest # --no-ssh
+```
 
 After the preset runs,
 
