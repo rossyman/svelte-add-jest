@@ -1,3 +1,4 @@
+import { assign, parse, stringify } from 'comment-json';
 import { Preset, color } from 'apply';
 
 type Dependencies = {
@@ -187,12 +188,10 @@ class SvelteJestAdder extends Adder {
       .withTitle('Enabling Jest DOM Support')
       .if(() => this.getConfiguration('jest-dom'));
 
-    Preset
-      .editJson('tsconfig.json').merge({
-        exclude: ['src/**/*.spec.ts']
-      })
-      .withTitle('Modifying TypeScript config for project')
-      .if(() => this.getConfiguration('ts'));
+    Preset.edit('tsconfig.json').update((content) => 
+      stringify(assign(parse(content), { exclude: ['src/**/*.spec.ts'] }), null, 4))
+        .withTitle('Modifying TypeScript config for project')
+        .if(() => this.getConfiguration('ts'));
 
     Preset
       .editJson('jest.config.json').merge({

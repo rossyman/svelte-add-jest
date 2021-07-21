@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@rossyman/svelte-add-jest",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "SvelteKit adder for Jest unit testing",
   "license": "MIT",
   "keywords": [
@@ -20,6 +20,7 @@
   ],
   "preset": "preset.ts",
   "devDependencies": {
-    "apply": "^0.2.13"
+    "apply": "^0.2.13",
+    "comment-json": "^4.1.0"
   }
 }
