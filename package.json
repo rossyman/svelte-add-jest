@@ -19,8 +19,10 @@
     "Brady Wiggins (https://github.com/FractalHQ)"
   ],
   "preset": "preset.ts",
-  "devDependencies": {
-    "apply": "^0.2.13",
+  "dependencies": {
     "comment-json": "^4.1.0"
+  },
+  "devDependencies": {
+    "apply": "^0.2.13"
   }
 }
