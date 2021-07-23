@@ -5,7 +5,7 @@
   },
   "moduleNameMapper": {
     "^\\$lib(.*)$": "<rootDir>/src/lib$1",
-    "^\\$app(.*)$": [".svelte/dev/runtime/app/*", ".svelte/build/runtime/app/*"]
+    "^\\$app(.*)$": ["<rootDir>/.svelte-kit/dev/runtime/app$1", "<rootDir>/.svelte-kit/build/runtime/app$1"]
   },
   "moduleFileExtensions": ["js", "svelte"]
 }
