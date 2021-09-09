@@ -28,12 +28,13 @@ After the preset runs,
 
 ### ⚙️ Options
 
-| Description        | Flag            | Negated            | Default |
-| ------------------ | --------------- | ------------------ | ------- |
-| Interactive Mode   | `--interaction` | `--no-interaction` | True    |
-| Jest DOM Support   | `--jest-dom`    | `--no-jest-dom`    | True    |
-| Typescript Support | `--ts`          | `--no-ts`          | False   |
-| Generate Example   | `--examples`    | `--no-examples`    | True    |
+| Description               | Flag            | Negated            | Default |
+| ------------------------- | --------------- | ------------------ | ------- |
+| Interactive Mode          | `--interaction` | `--no-interaction` | True    |
+| Jest DOM Support          | `--jest-dom`    | `--no-jest-dom`    | True    |
+| Typescript Support        | `--ts`          | `--no-ts`          | False   |
+| JSDOM Jest Env by Default | `--jsdom`       | `--jsdom`          | True    |
+| Generate Example          | `--examples`    | `--no-examples`    | True    |
 
 ### 📑 Relevant Documentation
 

@@ -4,7 +4,7 @@ type Dependencies = {
   [key: string]: {
     version: string;
     type?: 'DEV' | 'PEER';
-    reliesOn?: string;
+    reliesOn?: string | string[];
   }
 }
 
@@ -126,7 +126,9 @@ abstract class Adder {
         }
 
         action.if(() => dependencyConfig.reliesOn
-          ? this.getConfiguration(dependencyConfig.reliesOn)
+          ? Array.isArray(dependencyConfig.reliesOn)
+            ? dependencyConfig.reliesOn.every(Boolean)
+            : this.getConfiguration(dependencyConfig.reliesOn)
           : true
         );
       });
@@ -158,7 +160,8 @@ class SvelteJestAdder extends Adder {
   protected readonly CONFIGURATION: Configuration = {
     'jest-dom': {message: 'Enable Jest DOM support?', default: true, question: true},
     'ts': {message: 'Enable TypeScript support?', default: false, question: true},
-    'examples': {message: 'Generate example test file?', default: true, question: true}
+    'examples': {message: 'Generate example test file?', default: true, question: true},
+    'jsdom': {message: 'Enable JSDOM environment by default?', default: true, question: true}
   };
 
   protected readonly REQUIRED_DEPENDENCIES: Dependencies = {
@@ -171,7 +174,7 @@ class SvelteJestAdder extends Adder {
     '@testing-library/jest-dom': {version: '^5.14.0', type: 'DEV', reliesOn: 'jest-dom'},
     'ts-jest': {version: '^27.0.0', type: 'DEV', reliesOn: 'ts'},
     '@types/jest': {version: '^27.0.0', type: 'DEV', reliesOn: 'ts'},
-    '@types/testing-library__jest-dom': {version: '^5.14.0', type: 'DEV', reliesOn: 'ts'}
+    '@types/testing-library__jest-dom': {version: '^5.14.0', type: 'DEV', reliesOn: ['ts', 'jest-dom']}
   };
 
   run(): void {
@@ -197,33 +200,50 @@ class SvelteJestAdder extends Adder {
     Preset
       .editJson('jest.config.json').merge({
         transform: {
-          '^.+\\.svelte$': ['svelte-jester', {preprocess: true}],
+          '^.+\\.svelte$': ['./node_modules/svelte-jester/dist/transformer.mjs', {preprocess: true}],
           '^.+\\.ts$': 'ts-jest'
         },
-        moduleFileExtensions: ['js', 'ts', 'svelte'],
+        moduleFileExtensions: ['ts'],
+        extensionsToTreatAsEsm: ['.ts'],
         globals: {
           'ts-jest': {
-            tsconfig: 'tsconfig.spec.json'
+            tsconfig: 'tsconfig.spec.json',
+            'useESM': true
           }
         }
       })
       .withTitle('Modifying Jest config for TypeScript transformation')
       .if(() => this.getConfiguration('ts'));
 
+    Preset
+      .editJson('jest.config.json').merge({
+        testEnvironment: 'jsdom'
+      })
+      .withTitle('Modifying Jest config to enable JSDOM environment')
+      .if(() => this.getConfiguration('jsdom'));
+
     this.safeExtract('Initializing TypeScript config for tests', 'tsconfig.spec.json')
       .if(() => this.getConfiguration('ts'));
 
-    this.safeExtract('Initializing example test file', 'index.spec.js')
-      .to('src/routes/')
-      .if(() => this.getConfiguration('examples') && this.getConfiguration('jest-dom') && !this.getConfiguration('ts'));
-
     this.safeExtract('Initializing example test file', 'index.spec.ts')
       .to('src/routes/')
-      .if(() => this.getConfiguration('examples') && this.getConfiguration('jest-dom') && this.getConfiguration('ts'));
+      .if(() => this.getConfiguration('examples') && this.getConfiguration('ts') && !this.getConfiguration('jest-dom'));
+
+    this.safeExtract('Initializing example test file', 'index.spec.js')
+      .to('src/routes/')
+      .if(() => this.getConfiguration('examples') && !this.getConfiguration('ts') && !this.getConfiguration('jest-dom'));
+
+    this.safeExtract('Initializing example test file', 'index-dom.spec.ts')
+      .to('src/routes/')
+      .if(() => this.getConfiguration('examples') && this.getConfiguration('ts') && this.getConfiguration('jest-dom'));
+
+    this.safeExtract('Initializing example test file', 'index-dom.spec.js')
+      .to('src/routes/')
+      .if(() => this.getConfiguration('examples') && !this.getConfiguration('ts') && this.getConfiguration('jest-dom'));
 
     Preset
       .editJson('package.json')
-      .merge({scripts: {'test': 'jest src --config jest.config.json', 'test:watch': 'npm run test -- --watch'}})
+      .merge({scripts: {'test': 'NODE_OPTIONS=--experimental-vm-modules jest src --config jest.config.json', 'test:watch': 'npm run test -- --watch'}})
       .withTitle('Adding test scripts to package.json');
 
     Preset

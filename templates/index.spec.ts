@@ -1,12 +1,24 @@
 /**
- * @jest-environment jsdom
+ * An example test suite outlining the usage of
+ * `describe()`, `beforeEach()`, `test()` and `expect()`
+ *
+ * @see https://jestjs.io/docs/getting-started
  */
 
-import '@testing-library/jest-dom/extend-expect';
-import { render } from '@testing-library/svelte';
-import index from './index.svelte';
+describe('Index', () => {
 
-test('shows proper heading when rendered', () => {
-  const { getByText } = render(index);
-  expect(getByText('Hello world!')).toBeInTheDocument();
+  let isTestSuitePassing = false;
+
+  beforeEach(() => {
+    isTestSuitePassing = true;
+  });
+
+  describe('isTestSuitePassing', () => {
+
+    test('should be true', () => {
+      expect(isTestSuitePassing).toBe(true);
+    });
+
+  });
+
 });
