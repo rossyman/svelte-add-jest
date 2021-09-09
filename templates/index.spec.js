@@ -1,3 +1,10 @@
+import { render } from '@testing-library/svelte';
+import Index from './index.svelte';
+
+/**
+ * @jest-environment jsdom
+ */
+
 /**
  * An example test suite outlining the usage of
  * `describe()`, `beforeEach()`, `test()` and `expect()`
@@ -7,16 +14,16 @@
 
 describe('Index', () => {
 
-  let isTestSuitePassing = false;
+  let renderedComponent;
 
   beforeEach(() => {
-    isTestSuitePassing = true;
+    renderedComponent = render(Index);
   });
 
-  describe('isTestSuitePassing', () => {
+  describe('once the component has been rendered', () => {
 
-    test('should be true', () => {
-      expect(isTestSuitePassing).toBe(true);
+    test('should show the proper heading', () => {
+      expect(renderedComponent.getByText('SvelteKit', {exact: false})).toBeDefined();
     });
 
   });
