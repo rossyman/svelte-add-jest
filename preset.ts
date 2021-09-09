@@ -166,8 +166,8 @@ class SvelteJestAdder extends Adder {
 
   protected readonly REQUIRED_DEPENDENCIES: Dependencies = {
     '@babel/core': {version: '^7.14.0', type: 'DEV'},
-    '@babel/preset-env': {version: '^7.14.0', type: 'DEV'},
     'jest': {version: '^27.0.0', type: 'DEV'},
+    'babel-plugin-transform-vite-meta-env': {version: '^1.0.1', type: 'DEV'},
     'babel-jest': {version: '^27.0.0', type: 'DEV'},
     'svelte-jester': {version: '^2.0.1', type: 'DEV'},
     '@testing-library/svelte': {version: '^3.0.0', type: 'DEV'},
@@ -243,7 +243,10 @@ class SvelteJestAdder extends Adder {
 
     Preset
       .editJson('package.json')
-      .merge({scripts: {'test': 'NODE_OPTIONS=--experimental-vm-modules jest src --config jest.config.json', 'test:watch': 'npm run test -- --watch'}})
+      .merge({scripts: {
+        'test': 'NODE_OPTIONS=--experimental-vm-modules jest src --config jest.config.json',
+        'test:watch': 'npm run test -- --watch'
+      }})
       .withTitle('Adding test scripts to package.json');
 
     Preset
