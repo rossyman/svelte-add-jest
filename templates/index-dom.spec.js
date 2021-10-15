@@ -24,7 +24,7 @@ describe('Index', () => {
   describe('once the component has been rendered', () => {
 
     test('should show the proper heading', () => {
-      expect(renderedComponent.getByText('Welcome to SvelteKit')).toBeInTheDocument();
+      expect(renderedComponent.getByText(/SvelteKit/)).toBeInTheDocument();
     });
 
   });
