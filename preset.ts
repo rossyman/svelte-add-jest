@@ -201,7 +201,7 @@ class SvelteJestAdder extends Adder {
     Preset
       .editJson('jest.config.json').merge({
         transform: {
-          '^.+\\.svelte$': ['./node_modules/svelte-jester/dist/transformer.mjs', {preprocess: true}],
+          '^.+\\.svelte$': ['svelte-jester/dist/transformer.mjs', {preprocess: true}],
           '^.+\\.ts$': 'ts-jest'
         },
         moduleFileExtensions: ['ts'],
